@@ -1,0 +1,1160 @@
+version: 1
+
+indices:
+  def: &def
+    exclude:
+      - '**/shared/**'
+      - '**/gnav**'
+      - '**/footer**'
+      - '**/drafts/**'
+      - '**/fragments/**'
+    include:
+      - /**
+    target: /shared/assets/query-index.xlsx
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      date:
+        select: head > meta[name="publishdate"]
+        value: dateValue(attribute(el, 'content'), 'MM-DD-YYYY')
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')  
+  
+  merch-cards: &merch-cards
+    include:
+      - /shared/fragments/merch/**/merch-card/**
+    target: /shared/assets/query-index-cards.xslx
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      cardClasses:
+        select: main div.merch-card
+        value: attribute(el, "className")
+      cardContent:
+        select: main > div
+        value: innerHTML(el)
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
+      publicationDate:
+        select: none
+        value: parseTimestamp(headers["date"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+
+  adobestudents-au:
+    <<: *def
+    include:
+      - /au/**
+    target: /au/shared/assets/query-index.xlsx
+  
+  cards-au:
+    <<: *merch-cards
+    include:
+      - /au/shared/fragments/merch/**/merch-card/**
+    target: /au/shared/assets/query-index-cards.xslx    
+
+  adobestudents-de:
+    <<: *def
+    include:
+      - /de/**
+    target: /de/shared/assets/query-index.xlsx
+  
+  cards-de:
+    <<: *merch-cards
+    include:
+      - /de/shared/fragments/merch/**/merch-card/**
+    target: /de/shared/assets/query-index-cards.xslx    
+    
+  adobestudents-es:
+    <<: *def
+    include:
+      - /es/**
+    target: /es/shared/assets/query-index.xlsx
+
+  cards-es:
+    <<: *merch-cards
+    include:
+      - /es/shared/fragments/merch/**/merch-card/**
+    target: /es/shared/assets/query-index-cards.xslx
+
+  adobestudents-fr:
+    <<: *def
+    include:
+      - /fr/**
+    target: /fr/shared/assets/query-index.xlsx
+
+  cards-fr:
+    <<: *merch-cards
+    include:
+      - /fr/shared/fragments/merch/**/merch-card/**
+    target: /fr/shared/assets/query-index-cards.xslx    
+
+  adobestudents-it:
+    <<: *def
+    include:
+      - /it/**
+    target: /it/shared/assets/query-index.xlsx
+  
+  cards-it:
+    <<: *merch-cards
+    include:
+      - /it/shared/fragments/merch/**/merch-card/**
+    target: /it/shared/assets/query-index-cards.xslx
+
+  adobestudents-jp:
+    <<: *def
+    include:
+      - /jp/**
+    target: /jp/shared/assets/query-index.xlsx
+
+  cards-jp:
+    <<: *merch-cards
+    include:
+      - /jp/shared/fragments/merch/**/merch-card/**
+    target: /jp/shared/assets/query-index-cards.xslx
+
+  adobestudents-kr:
+    <<: *def
+    include:
+      - /kr/**
+    target: /kr/shared/assets/query-index.xlsx
+
+  cards-kr:
+    <<: *merch-cards
+    include:
+      - /kr/shared/fragments/merch/**/merch-card/**
+    target: /kr/shared/assets/query-index-cards.xslx
+
+  adobestudents-ru:
+    <<: *def
+    include:
+      - /ru/**
+    target: /ru/shared/assets/query-index.xlsx
+
+  cards-ru:
+    <<: *merch-cards
+    include:
+      - /ru/shared/fragments/merch/**/merch-card/**
+    target: /ru/shared/assets/query-index-cards.xslx
+
+  adobestudents-hk_zh:
+    <<: *def
+    include:
+      - /hk_zh/**
+    target: /hk_zh/shared/assets/query-index.xlsx
+
+  cards-hk_zh:
+    <<: *merch-cards
+    include:
+      - /hk_zh/shared/fragments/merch/**/merch-card/**
+    target: /hk_zh/shared/assets/query-index-cards.xslx
+
+  adobestudents-tw:
+    <<: *def
+    include:
+      - /tw/**
+    target: /tw/shared/assets/query-index.xlsx  
+
+  cards-tw:
+    <<: *merch-cards
+    include:
+      - /tw/shared/fragments/merch/**/merch-card/**
+    target: /tw/shared/assets/query-index-cards.xslx
+
+  adobestudents-nl:
+    <<: *def
+    include:
+      - /nl/**
+    target: /nl/shared/assets/query-index.xlsx
+
+  cards-nl:
+    <<: *merch-cards
+    include:
+      - /nl/shared/fragments/merch/**/merch-card/**
+    target: /nl/shared/assets/query-index-cards.xslx
+
+  adobestudents-pl:
+    <<: *def
+    include:
+      - /pl/**
+    target: /pl/shared/assets/query-index.xlsx
+
+  cards-pl:
+    <<: *merch-cards
+    include:
+      - /pl/shared/fragments/merch/**/merch-card/**
+    target: /pl/shared/assets/query-index-cards.xslx
+
+  adobestudents-tr:
+    <<: *def
+    include:
+      - /tr/**
+    target: /tr/shared/assets/query-index.xlsx  
+
+  cards-tr:
+    <<: *merch-cards
+    include:
+      - /tr/shared/fragments/merch/**/merch-card/**
+    target: /tr/shared/assets/query-index-cards.xslx
+
+  adobestudents-uk:
+    <<: *def
+    include:
+      - /uk/**
+    target: /uk/shared/assets/query-index.xlsx
+
+  cards-uk:
+    <<: *merch-cards
+    include:
+      - /uk/shared/fragments/merch/**/merch-card/**
+    target: /uk/shared/assets/query-index-cards.xslx
+
+  adobestudents-ca:
+    <<: *def
+    include:
+      - /ca/**
+    target: /ca/shared/assets/query-index.xlsx
+
+  cards-ca:
+    <<: *merch-cards
+    include:
+      - /ca/shared/fragments/merch/**/merch-card/**
+    target: /ca/shared/assets/query-index-cards.xslx
+
+  adobestudents-cn:
+    <<: *def
+    include:
+      - /cn/**
+    target: /cn/shared/assets/query-index.xlsx
+
+  cards-cn:
+    <<: *merch-cards
+    include:
+      - /cn/shared/fragments/merch/**/merch-card/**
+    target: /cn/shared/assets/query-index-cards.xslx
+
+  adobestudents-ae_ar:
+    <<: *def
+    include:
+      - /ae_ar/**
+    target: /ae_ar/shared/assets/query-index.xlsx
+
+  cards-ae_ar:
+    <<: *merch-cards
+    include:
+      - /ae_ar/shared/fragments/merch/**/merch-card/**
+    target: /ae_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-ae_en:
+    <<: *def
+    include:
+      - /ae_en/**
+    target: /ae_en/shared/assets/query-index.xlsx
+
+  cards-ae_en:
+    <<: *merch-cards
+    include:
+      - /ae_en/shared/fragments/merch/**/merch-card/**
+    target: /ae_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-at:
+    <<: *def
+    include:
+      - /at/**
+    target: /at/shared/assets/query-index.xlsx
+
+  cards-at:
+    <<: *merch-cards
+    include:
+      - /at/shared/fragments/merch/**/merch-card/**
+    target: /at/shared/assets/query-index-cards.xslx
+
+  adobestudents-be_en:
+    <<: *def
+    include:
+      - /be_en/**
+    target: /be_en/shared/assets/query-index.xlsx
+
+  cards-be_en:
+    <<: *merch-cards
+    include:
+      - /be_en/shared/fragments/merch/**/merch-card/**
+    target: /be_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-be_fr:
+    <<: *def
+    include:
+      - /be_fr/**
+    target: /be_fr/shared/assets/query-index.xlsx
+
+  cards-be_fr:
+    <<: *merch-cards
+    include:
+      - /be_fr/shared/fragments/merch/**/merch-card/**
+    target: /be_fr/shared/assets/query-index-cards.xslx
+
+  adobestudents-ca_fr:
+    <<: *def
+    include:
+      - /ca_fr/**
+    target: /ca_fr/shared/assets/query-index.xlsx
+
+  cards-ca_fr:
+    <<: *merch-cards
+    include:
+      - /ca_fr/shared/fragments/merch/**/merch-card/**
+    target: /ca_fr/shared/assets/query-index-cards.xslx
+    
+  adobestudents-ch_de:
+    <<: *def
+    include:
+      - /ch_de/**
+    target: /ch_de/shared/assets/query-index.xlsx
+
+  cards-ch_de:
+    <<: *merch-cards
+    include:
+      - /ch_de/shared/fragments/merch/**/merch-card/**
+    target: /ch_de/shared/assets/query-index-cards.xslx
+
+  adobestudents-ch_fr:
+    <<: *def
+    include:
+      - /ch_fr/**
+    target: /ch_fr/shared/assets/query-index.xlsx
+
+  cards-ch_fr:
+    <<: *merch-cards
+    include:
+      - /ch_fr/shared/fragments/merch/**/merch-card/**
+    target: /ch_fr/shared/assets/query-index-cards.xslx
+
+  adobestudents-cl:
+    <<: *def
+    include:
+      - /cl/**
+    target: /cl/shared/assets/query-index.xlsx
+
+  cards-cl:
+    <<: *merch-cards
+    include:
+      - /cl/shared/fragments/merch/**/merch-card/**
+    target: /cl/shared/assets/query-index-cards.xslx
+
+  adobestudents-cy_en:
+    <<: *def
+    include:
+      - /cy_en/**
+    target: /cy_en/shared/assets/query-index.xlsx
+
+  cards-cy_en:
+    <<: *merch-cards
+    include:
+      - /cy_en/shared/fragments/merch/**/merch-card/**
+    target: /cy_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-gr_en:
+    <<: *def
+    include:
+      - /gr_en/**
+    target: /gr_en/shared/assets/query-index.xlsx  
+
+  cards-gr_en:
+    <<: *merch-cards
+    include:
+      - /gr_en/shared/fragments/merch/**/merch-card/**
+    target: /gr_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-hk_en:
+    <<: *def
+    include:
+      - /hk_en/**
+    target: /hk_en/shared/assets/query-index.xlsx
+
+  cards-hk_en:
+    <<: *merch-cards
+    include:
+      - /hk_en/shared/fragments/merch/**/merch-card/**
+    target: /hk_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-ie:
+    <<: *def
+    include:
+      - /ie/**
+    target: /ie/shared/assets/query-index.xlsx  
+
+  cards-ie:
+    <<: *merch-cards
+    include:
+      - /ie/shared/fragments/merch/**/merch-card/**
+    target: /ie/shared/assets/query-index-cards.xslx
+
+  adobestudents-il_en:
+    <<: *def
+    include:
+      - /il_en/**
+    target: /il_en/shared/assets/query-index.xlsx
+
+  cards-il_en:
+    <<: *merch-cards
+    include:
+      - /il_en/shared/fragments/merch/**/merch-card/**
+    target: /il_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-in:
+    <<: *def
+    include:
+      - /in/**
+    target: /in/shared/assets/query-index.xlsx
+
+  cards-in:
+    <<: *merch-cards
+    include:
+      - /in/shared/fragments/merch/**/merch-card/**
+    target: /in/shared/assets/query-index-cards.xslx
+
+  adobestudents-lt:
+    <<: *def
+    include:
+      - /lt/**
+    target: /lt/shared/assets/query-index.xlsx
+
+  cards-lt:
+    <<: *merch-cards
+    include:
+      - /lt/shared/fragments/merch/**/merch-card/**
+    target: /lt/shared/assets/query-index-cards.xslx
+
+  adobestudents-lu_de:
+    <<: *def
+    include:
+      - /lu_de/**
+    target: /lu_de/shared/assets/query-index.xlsx
+
+  cards-lu_de:
+    <<: *merch-cards
+    include:
+      - /lu_de/shared/fragments/merch/**/merch-card/**
+    target: /lu_de/shared/assets/query-index-cards.xslx
+
+  adobestudents-lu_en:
+    <<: *def
+    include:
+      - /lu_en/**
+    target: /lu_en/shared/assets/query-index.xlsx
+
+  cards-lu_en:
+    <<: *merch-cards
+    include:
+      - /lu_en/shared/fragments/merch/**/merch-card/**
+    target: /lu_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-lu_fr:
+    <<: *def
+    include:
+      - /lu_fr/**
+    target: /lu_fr/shared/assets/query-index.xlsx
+
+  cards-lu_fr:
+    <<: *merch-cards
+    include:
+      - /lu_fr/shared/fragments/merch/**/merch-card/**
+    target: /lu_fr/shared/assets/query-index-cards.xslx
+
+  adobestudents-mena_en:
+    <<: *def
+    include:
+      - /mena_en/**
+    target: /mena_en/shared/assets/query-index.xlsx
+
+  cards-mena_en:
+    <<: *merch-cards
+    include:
+      - /mena_en/shared/fragments/merch/**/merch-card/**
+    target: /mena_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-mt:
+    <<: *def
+    include:
+      - /mt/**
+    target: /mt/shared/assets/query-index.xlsx  
+
+  cards-mt:
+    <<: *merch-cards
+    include:
+      - /mt/shared/fragments/merch/**/merch-card/**
+    target: /mt/shared/assets/query-index-cards.xslx
+
+  adobestudents-nz:
+    <<: *def
+    include:
+      - /nz/**
+    target: /nz/shared/assets/query-index.xlsx
+
+  cards-nz:
+    <<: *merch-cards
+    include:
+      - /nz/shared/fragments/merch/**/merch-card/**
+    target: /nz/shared/assets/query-index-cards.xslx
+
+  adobestudents-sa_ar:
+    <<: *def
+    include:
+      - /sa_ar/**
+    target: /sa_ar/shared/assets/query-index.xlsx  
+
+  cards-sa_ar:
+    <<: *merch-cards
+    include:
+      - /sa_ar/shared/fragments/merch/**/merch-card/**
+    target: /sa_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-sa_en:
+    <<: *def
+    include:
+      - /sa_en/**
+    target: /sa_en/shared/assets/query-index.xlsx
+
+   cards-sa_en:
+    <<: *merch-cards
+    include:
+      - /sa_en/shared/fragments/merch/**/merch-card/**
+    target: /sa_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-th_en:
+    <<: *def
+    include:
+      - /th_en/**
+    target: /th_en/shared/assets/query-index.xlsx
+
+  cards-th_en:
+    <<: *merch-cards
+    include:
+      - /th_en/shared/fragments/merch/**/merch-card/**
+    target: /th_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-th_th:
+    <<: *def
+    include:
+      - /th_th/**
+    target: /th_th/shared/assets/query-index.xlsx
+
+  cards-th_th:
+    <<: *merch-cards
+    include:
+      - /th_th/shared/fragments/merch/**/merch-card/**
+    target: /th_th/shared/assets/query-index-cards.xslx
+
+  adobestudents-za:
+    <<: *def
+    include:
+      - /za/**
+    target: /za/shared/assets/query-index.xlsx
+
+  cards-za:
+    <<: *merch-cards
+    include:
+      - /za/shared/fragments/merch/**/merch-card/**
+    target: /za/shared/assets/query-index-cards.xslx
+
+  adobestudents-africa:
+    <<: *def
+    include:
+      - /africa/**
+    target: /africa/shared/assets/query-index.xlsx
+
+  cards-africa:
+    <<: *merch-cards
+    include:
+      - /africa/shared/fragments/merch/**/merch-card/**
+    target: /africa/shared/assets/query-index-cards.xslx
+
+  adobestudents-ar:
+    <<: *def
+    include:
+      - /ar/**
+    target: /ar/shared/assets/query-index.xlsx
+
+  cards-ar:
+    <<: *merch-cards
+    include:
+      - /ar/shared/fragments/merch/**/merch-card/**
+    target: /ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-co:
+    <<: *def
+    include:
+      - /co/**
+    target: /co/shared/assets/query-index.xlsx
+
+  cards-co:
+    <<: *merch-cards
+    include:
+      - /co/shared/fragments/merch/**/merch-card/**
+    target: /co/shared/assets/query-index-cards.xslx
+
+  adobestudents-cr:
+    <<: *def
+    include:
+      - /cr/**
+    target: /cr/shared/assets/query-index.xlsx
+
+  cards-cr:
+    <<: *merch-cards
+    include:
+      - /cr/shared/fragments/merch/**/merch-card/**
+    target: /cr/shared/assets/query-index-cards.xslx
+
+  adobestudents-ec:
+    <<: *def
+    include:
+      - /ec/**
+    target: /ec/shared/assets/query-index.xlsx
+
+  cards-ec:
+    <<: *merch-cards
+    include:
+      - /ec/shared/fragments/merch/**/merch-card/**
+    target: /ec/shared/assets/query-index-cards.xslx
+
+  adobestudents-eg_ar:
+    <<: *def
+    include:
+      - /eg_ar/**
+    target: /eg_ar/shared/assets/query-index.xlsx
+
+  cards-eg_ar:
+    <<: *merch-cards
+    include:
+      - /eg_ar/shared/fragments/merch/**/merch-card/**
+    target: /eg_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-eg_en:
+    <<: *def
+    include:
+      - /eg_en/**
+    target: /eg_en/shared/assets/query-index.xlsx
+
+  cards-eg_en:
+    <<: *merch-cards
+    include:
+      - /eg_en/shared/fragments/merch/**/merch-card/**
+    target: /eg_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-gr_el:
+    <<: *def
+    include:
+      - /gr_el/**
+    target: /gr_el/shared/assets/query-index.xlsx
+
+  cards-gr_el:
+    <<: *merch-cards
+    include:
+      - /gr_el/shared/fragments/merch/**/merch-card/**
+    target: /gr_el/shared/assets/query-index-cards.xslx
+
+  adobestudents-gt:
+    <<: *def
+    include:
+      - /gt/**
+    target: /gt/shared/assets/query-index.xlsx
+
+  cards-gt:
+    <<: *merch-cards
+    include:
+      - /gt/shared/fragments/merch/**/merch-card/**
+    target: /gt/shared/assets/query-index-cards.xslx
+
+  adobestudents-id_en:
+    <<: *def
+    include:
+      - /id_en/**
+    target: /id_en/shared/assets/query-index.xlsx
+
+  cards-id_en:
+    <<: *merch-cards
+    include:
+      - /id_en/shared/fragments/merch/**/merch-card/**
+    target: /id_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-id_id:
+    <<: *def
+    include:
+      - /id_id/**
+    target: /id_id/shared/assets/query-index.xlsx
+
+  cards-id_id:
+    <<: *merch-cards
+    include:
+      - /id_id/shared/fragments/merch/**/merch-card/**
+    target: /id_id/shared/assets/query-index-cards.xslx
+
+  adobestudents-in_hi:
+    <<: *def
+    include:
+      - /in_hi/**
+    target: /in_hi/shared/assets/query-index.xlsx
+
+  cards-in_hi:
+    <<: *merch-cards
+    include:
+      - /in_hi/shared/fragments/merch/**/merch-card/**
+    target: /in_hi/shared/assets/query-index-cards.xslx
+
+  adobestudents-kw_ar:
+    <<: *def
+    include:
+      - /kw_ar/**
+    target: /kw_ar/shared/assets/query-index.xlsx
+
+  cards-kw_ar:
+    <<: *merch-cards
+    include:
+      - /kw_ar/shared/fragments/merch/**/merch-card/**
+    target: /kw_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-kw_en:
+    <<: *def
+    include:
+      - /kw_en/**
+    target: /kw_en/shared/assets/query-index.xlsx
+
+  cards-kw_en:
+    <<: *merch-cards
+    include:
+      - /kw_en/shared/fragments/merch/**/merch-card/**
+    target: /kw_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-my_en:
+    <<: *def
+    include:
+      - /my_en/**
+    target: /my_en/shared/assets/query-index.xlsx
+
+  cards-my_en:
+    <<: *merch-cards
+    include:
+      - /my_en/shared/fragments/merch/**/merch-card/**
+    target: /my_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-my_ms:
+    <<: *def
+    include:
+      - /my_ms/**
+    target: /my_ms/shared/assets/query-index.xlsx
+
+  cards-my_ms:
+    <<: *merch-cards
+    include:
+      - /my_ms/shared/fragments/merch/**/merch-card/**
+    target: /my_ms/shared/assets/query-index-cards.xslx
+
+  adobestudents-ng:
+    <<: *def
+    include:
+      - /ng/**
+    target: /ng/shared/assets/query-index.xlsx  
+
+  cards-ng:
+    <<: *merch-cards
+    include:
+      - /ng/shared/fragments/merch/**/merch-card/**
+    target: /ng/shared/assets/query-index-cards.xslx
+
+  adobestudents-pe:
+    <<: *def
+    include:
+      - /pe/**
+    target: /pe/shared/assets/query-index.xlsx  
+
+  cards-pe:
+    <<: *merch-cards
+    include:
+      - /pe/shared/fragments/merch/**/merch-card/**
+    target: /pe/shared/assets/query-index-cards.xslx
+
+  adobestudents-ph_en:
+    <<: *def
+    include:
+      - /ph_en/**
+    target: /ph_en/shared/assets/query-index.xlsx
+
+  cards-ph_en:
+    <<: *merch-cards
+    include:
+      - /ph_en/shared/fragments/merch/**/merch-card/**
+    target: /ph_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-ph_fil:
+    <<: *def
+    include:
+      - /ph_fil/**
+    target: /ph_fil/shared/assets/query-index.xlsx
+
+  cards-ph_fil:
+    <<: *merch-cards
+    include:
+      - /ph_fil/shared/fragments/merch/**/merch-card/**
+    target: /ph_fil/shared/assets/query-index-cards.xslx
+
+  adobestudents-pr:
+    <<: *def
+    include:
+      - /pr/**
+    target: /pr/shared/assets/query-index.xlsx  
+
+  cards-pr:
+    <<: *merch-cards
+    include:
+      - /pr/shared/fragments/merch/**/merch-card/**
+    target: /pr/shared/assets/query-index-cards.xslx
+
+  adobestudents-qa_ar:
+    <<: *def
+    include:
+      - /qa_ar/**
+    target: /qa_ar/shared/assets/query-index.xlsx
+
+  cards-qa_ar:
+    <<: *merch-cards
+    include:
+      - /qa_ar/shared/fragments/merch/**/merch-card/**
+    target: /qa_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-qa_en:
+    <<: *def
+    include:
+      - /qa_en/**
+    target: /qa_en/shared/assets/query-index.xlsx
+
+  cards-qa_en:
+    <<: *merch-cards
+    include:
+      - /qa_en/shared/fragments/merch/**/merch-card/**
+    target: /qa_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-vn_en:
+    <<: *def
+    include:
+      - /vn_en/**
+    target: /vn_en/shared/assets/query-index.xlsx
+
+  cards-vn_en:
+    <<: *merch-cards
+    include:
+      - /vn_en/shared/fragments/merch/**/merch-card/**
+    target: /vn_en/shared/assets/query-index-cards.xslx
+    
+  adobestudents-vn_vi:
+    <<: *def
+    include:
+      - /vn_vi/**
+    target: /vn_vi/shared/assets/query-index.xlsx 
+
+  cards-vn_vi:
+    <<: *merch-cards
+    include:
+      - /vn_vi/shared/fragments/merch/**/merch-card/**
+    target: /vn_vi/shared/assets/query-index-cards.xslx
+
+  adobestudents-dk:
+    <<: *def
+    include:
+      - /dk/**
+    target: /dk/shared/assets/query-index.xlsx
+
+  cards-dk:
+    <<: *merch-cards
+    include:
+      - /dk/shared/fragments/merch/**/merch-card/**
+    target: /dk/shared/assets/query-index-cards.xslx
+
+  adobestudents-fi:
+    <<: *def
+    include:
+      - /fi/**
+    target: /fi/shared/assets/query-index.xlsx
+
+  cards-fi:
+    <<: *merch-cards
+    include:
+      - /fi/shared/fragments/merch/**/merch-card/**
+    target: /fi/shared/assets/query-index-cards.xslx
+
+  adobestudents-no:
+    <<: *def
+    include:
+      - /no/**
+    target: /no/shared/assets/query-index.xlsx
+
+  cards-no:
+    <<: *merch-cards
+    include:
+      - /no/shared/fragments/merch/**/merch-card/**
+    target: /no/shared/assets/query-index-cards.xslx
+
+  adobestudents-se:
+    <<: *def
+    include:
+      - /se/**
+    target: /se/shared/assets/query-index.xlsx
+
+  cards-se:
+    <<: *merch-cards
+    include:
+      - /se/shared/fragments/merch/**/merch-card/**
+    target: /se/shared/assets/query-index-cards.xslx
+
+  adobestudents-la:
+    <<: *def
+    include:
+      - /la/**
+    target: /la/shared/assets/query-index.xlsx
+
+  cards-la:
+    <<: *merch-cards
+    include:
+      - /la/shared/fragments/merch/**/merch-card/**
+    target: /la/shared/assets/query-index-cards.xslx
+
+  adobestudents-mx:
+    <<: *def
+    include:
+      - /mx/**
+    target: /mx/shared/assets/query-index.xlsx
+
+  cards-mx:
+    <<: *merch-cards
+    include:
+      - /mx/shared/fragments/merch/**/merch-card/**
+    target: /mx/shared/assets/query-index-cards.xslx
+
+  adobestudents-be_nl:
+    <<: *def
+    include:
+      - /be_nl/**
+    target: /be_nl/shared/assets/query-index.xlsx
+
+  cards-be_nl:
+    <<: *merch-cards
+    include:
+      - /be_nl/shared/fragments/merch/**/merch-card/**
+    target: /be_nl/shared/assets/query-index-cards.xslx
+
+  adobestudents-bg:
+    <<: *def
+    include:
+      - /bg/**
+    target: /bg/shared/assets/query-index.xlsx
+
+  cards-bg:
+    <<: *merch-cards
+    include:
+      - /bg/shared/fragments/merch/**/merch-card/**
+    target: /bg/shared/assets/query-index-cards.xslx
+
+  adobestudents-ch_it:
+    <<: *def
+    include:
+      - /ch_it/**
+    target: /ch_it/shared/assets/query-index.xlsx
+
+  cards-ch_it:
+    <<: *merch-cards
+    include:
+      - /ch_it/shared/fragments/merch/**/merch-card/**
+    target: /ch_it/shared/assets/query-index-cards.xslx
+
+  adobestudents-cz:
+    <<: *def
+    include:
+      - /cz/**
+    target: /cz/shared/assets/query-index.xlsx
+
+  cards-cz:
+    <<: *merch-cards
+    include:
+      - /cz/shared/fragments/merch/**/merch-card/**
+    target: /cz/shared/assets/query-index-cards.xslx
+
+  adobestudents-ee:
+    <<: *def
+    include:
+      - /ee/**
+    target: /ee/shared/assets/query-index.xlsx
+
+  cards-ee:
+    <<: *merch-cards
+    include:
+      - /ee/shared/fragments/merch/**/merch-card/**
+    target: /ee/shared/assets/query-index-cards.xslx
+
+  adobestudents-hu:
+    <<: *def
+    include:
+      - /hu/**
+    target: /hu/shared/assets/query-index.xlsx
+
+  cards-hu:
+    <<: *merch-cards
+    include:
+      - /hu/shared/fragments/merch/**/merch-card/**
+    target: /hu/shared/assets/query-index-cards.xslx
+
+  adobestudents-il_he:
+    <<: *def
+    include:
+      - /il_he/**
+    target: /il_he/shared/assets/query-index.xlsx
+
+  cards-il_he:
+    <<: *merch-cards
+    include:
+      - /il_he/shared/fragments/merch/**/merch-card/**
+    target: /il_he/shared/assets/query-index-cards.xslx
+
+  adobestudents-lv:
+    <<: *def
+    include:
+      - /lv/**
+    target: /lv/shared/assets/query-index.xlsx
+
+  cards-lv:
+    <<: *merch-cards
+    include:
+      - /lv/shared/fragments/merch/**/merch-card/**
+    target: /lv/shared/assets/query-index-cards.xslx
+
+  adobestudents-mena_ar:
+    <<: *def
+    include:
+      - /mena_ar/**
+    target: /mena_ar/shared/assets/query-index.xlsx
+
+  cards-mena_ar:
+    <<: *merch-cards
+    include:
+      - /mena_ar/shared/fragments/merch/**/merch-card/**
+    target: /mena_ar/shared/assets/query-index-cards.xslx
+
+  adobestudents-pt:
+    <<: *def
+    include:
+      - /pt/**
+    target: /pt/shared/assets/query-index.xlsx
+
+  cards-pt:
+    <<: *merch-cards
+    include:
+      - /pt/shared/fragments/merch/**/merch-card/**
+    target: /pt/shared/assets/query-index-cards.xslx
+
+  adobestudents-ro:
+    <<: *def
+    include:
+      - /ro/**
+    target: /ro/shared/assets/query-index.xlsx
+
+  cards-ro:
+    <<: *merch-cards
+    include:
+      - /ro/shared/fragments/merch/**/merch-card/**
+    target: /ro/shared/assets/query-index-cards.xslx
+
+  adobestudents-si:
+    <<: *def
+    include:
+      - /si/**
+    target: /si/shared/assets/query-index.xlsx
+
+  cards-si:
+    <<: *merch-cards
+    include:
+      - /si/shared/fragments/merch/**/merch-card/**
+    target: /si/shared/assets/query-index-cards.xslx
+
+  adobestudents-sk:
+    <<: *def
+    include:
+      - /sk/**
+    target: /sk/shared/assets/query-index.xlsx
+
+  cards-sk:
+    <<: *merch-cards
+    include:
+      - /sk/shared/fragments/merch/**/merch-card/**
+    target: /sk/shared/assets/query-index-cards.xslx
+    
+  adobestudents-ua:
+    <<: *def
+    include:
+      - /ua/**
+    target: /ua/shared/assets/query-index.xlsx
+
+  cards-ua:
+    <<: *merch-cards
+    include:
+      - /ua/shared/fragments/merch/**/merch-card/**
+    target: /ua/shared/assets/query-index-cards.xslx
+
+  adobestudents-sg:
+    <<: *def
+    include:
+      - /sg/**
+    target: /sg/shared/assets/query-index.xlsx
+
+  cards-sg:
+    <<: *merch-cards
+    include:
+      - /sg/shared/fragments/merch/**/merch-card/**
+    target: /sg/shared/assets/query-index-cards.xslx
+
+  adobestudents-br:
+    <<: *def
+    include:
+      - /br/**
+    target: /br/shared/assets/query-index.xlsx    
+
+  cards-br:
+    <<: *merch-cards
+    include:
+      - /br/shared/fragments/merch/**/merch-card/**
+    target: /br/shared/assets/query-index-cards.xslx
+
+  adobestudents-cis_en:
+    <<: *def
+    include:
+      - /cis_en/**
+    target: /cis_en/shared/assets/query-index.xlsx    
+
+  cards-cis_en:
+    <<: *merch-cards
+    include:
+      - /cis_en/shared/fragments/merch/**/merch-card/**
+    target: /cis_en/shared/assets/query-index-cards.xslx
+
+  adobestudents-cis_ru:
+    <<: *def
+    include:
+      - /cis_ru/**
+    target: /cis_ru/shared/assets/query-index.xlsx    
+
+  cards-cis_ru:
+    <<: *merch-cards
+    include:
+      - /cis_ru/shared/fragments/merch/**/merch-card/**
+    target: /cis_ru/shared/assets/query-index-cards.xslx

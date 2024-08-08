@@ -1,0 +1,579 @@
+version: 1
+
+sitemaps:
+  website:
+    origin: https://www.adobe.com
+    lastmod: YYYY-MM-DD
+    default: en-US
+    languages:
+      us:
+        source: /shared/assets/query-index.json
+        alternate: /{path}.html
+        destination: /shared/assets/sitemap.xml
+        hreflang: en-US
+
+      au:
+        source: /au/shared/assets/query-index.json
+        alternate: /au/{path}.html
+        destination: /au/shared/assets/sitemap.xml
+        hreflang: en-AU
+
+      de:
+        source: /de/shared/assets/query-index.json
+        alternate: /de/{path}.html
+        destination: /de/shared/assets/sitemap.xml
+        hreflang: de-DE
+
+      es:
+        source: /es/shared/assets/query-index.json
+        alternate: /es/{path}.html
+        destination: /es/shared/assets/sitemap.xml
+        hreflang: es-ES
+
+      fr:
+        source: /fr/shared/assets/query-index.json
+        alternate: /fr/{path}.html
+        destination: /fr/shared/assets/sitemap.xml
+        hreflang: fr-FR
+
+      it:
+        source: /it/shared/assets/query-index.json
+        alternate: /it/{path}.html
+        destination: /it/shared/assets/sitemap.xml
+        hreflang: it-IT
+
+      jp:
+        source: /jp/shared/assets/query-index.json
+        alternate: /jp/{path}.html
+        destination: /jp/shared/assets/sitemap.xml
+        hreflang: ja-JP
+
+      kr:
+        source: /kr/shared/assets/query-index.json
+        alternate: /kr/{path}.html
+        destination: /kr/shared/assets/sitemap.xml
+        hreflang: ko-KR
+        
+      ru:
+        source: /ru/shared/assets/query-index.json
+        alternate: /ru/{path}.html
+        destination: /ru/shared/assets/sitemap.xml
+        hreflang: ru-RU
+
+      hk_zh:
+        source: /hk_zh/shared/assets/query-index.json
+        alternate: /hk_zh/{path}.html
+        destination: /hk_zh/shared/assets/sitemap.xml
+        hreflang: zh-HK 
+
+      tw:
+        source: /tw/shared/assets/query-index.json
+        alternate: /tw/{path}.html
+        destination: /tw/shared/assets/sitemap.xml
+        hreflang: zh-TW
+        
+      nl:
+        source: /nl/shared/assets/query-index.json
+        alternate: /nl/{path}.html
+        destination: /nl/shared/assets/sitemap.xml
+        hreflang: nl-NL
+
+      pl:
+        source: /pl/shared/assets/query-index.json
+        alternate: /pl/{path}.html
+        destination: /pl/shared/assets/sitemap.xml
+        hreflang: pl-PL 
+
+      tr:
+        source: /tr/shared/assets/query-index.json
+        alternate: /tr/{path}.html
+        destination: /tr/shared/assets/sitemap.xml
+        hreflang: tr-TR 
+
+      uk:
+        source: /uk/shared/assets/query-index.json
+        alternate: /uk/{path}.html
+        destination: /uk/shared/assets/sitemap.xml
+        hreflang: en-GB
+
+      ca:
+        source: /ca/shared/assets/query-index.json
+        alternate: /ca/{path}.html
+        destination: /ca/shared/assets/sitemap.xml
+        hreflang: en-CA
+
+      cn:
+        source: /cn/shared/assets/query-index.json
+        alternate: /cn/{path}.html
+        destination: /cn/shared/assets/sitemap.xml
+        hreflang: zh-CN
+        
+      ae_ar:
+        source: /ae_ar/shared/assets/query-index.json
+        alternate: /ae_ar/{path}.html
+        destination: /ae_ar/shared/assets/sitemap.xml
+        hreflang: ar-AE
+
+      ae_en:
+        source: /ae_en/shared/assets/query-index.json
+        alternate: /ae_en/{path}.html
+        destination: /ae_en/shared/assets/sitemap.xml
+        hreflang: en-AE 
+
+      at:
+        source: /at/shared/assets/query-index.json
+        alternate: /at/{path}.html
+        destination: /at/shared/assets/sitemap.xml
+        hreflang: de-AT
+        
+      be_en:
+        source: /be_en/shared/assets/query-index.json
+        alternate: /be_en/{path}.html
+        destination: /be_en/shared/assets/sitemap.xml
+        hreflang: en-BE
+
+      be_fr:
+        source: /be_fr/shared/assets/query-index.json
+        alternate: /be_fr/{path}.html
+        destination: /be_fr/shared/assets/sitemap.xml
+        hreflang: fr-BE
+
+       ca_fr:
+        source: /ca_fr/shared/assets/query-index.json
+        alternate: /ca_fr/{path}.html
+        destination: /ca_fr/shared/assets/sitemap.xml
+        hreflang: fr-CA
+
+      ch_de:
+        source: /ch_de/shared/assets/query-index.json
+        alternate: /ch_de/{path}.html
+        destination: /ch_de/shared/assets/sitemap.xml
+        hreflang: de-CH
+
+      ch_fr:
+        source: /ch_fr/shared/assets/query-index.json
+        alternate: /ch_fr/{path}.html
+        destination: /ch_fr/shared/assets/sitemap.xml
+        hreflang: fr-CH
+
+      cl:
+        source: /cl/shared/assets/query-index.json
+        alternate: /cl/{path}.html
+        destination: /cl/shared/assets/sitemap.xml
+        hreflang: es-CL
+
+      cy_en:
+        source: /cy_en/shared/assets/query-index.json
+        alternate: /cy_en/{path}.html
+        destination: /cy_en/shared/assets/sitemap.xml
+        hreflang: en-CY
+
+      gr_en:
+        source: /gr_en/shared/assets/query-index.json
+        alternate: /gr_en/{path}.html
+        destination: /gr_en/shared/assets/sitemap.xml
+        hreflang: en-GR 
+
+      hk_en:
+        source: /hk_en/shared/assets/query-index.json
+        alternate: /hk_en/{path}.html
+        destination: /hk_en/shared/assets/sitemap.xml
+        hreflang: en-HK
+
+      ie:
+        source: /ie/shared/assets/query-index.json
+        alternate: /ie/{path}.html
+        destination: /ie/shared/assets/sitemap.xml
+        hreflang: en-IE 
+
+      il_en:
+        source: /il_en/shared/assets/query-index.json
+        alternate: /il_en/{path}.html
+        destination: /il_en/shared/assets/sitemap.xml
+        hreflang: en-IL
+
+      in:
+        source: /in/shared/assets/query-index.json
+        alternate: /in/{path}.html
+        destination: /in/shared/assets/sitemap.xml
+        hreflang: en-IN
+
+      lt:
+        source: /lt/shared/assets/query-index.json
+        alternate: /lt/{path}.html
+        destination: /lt/shared/assets/sitemap.xml
+        hreflang: lt-LT
+
+      lu_de:
+        source: /lu_de/shared/assets/query-index.json
+        alternate: /lu_de/{path}.html
+        destination: /lu_de/shared/assets/sitemap.xml
+        hreflang: de-LU
+
+      lu_en:
+        source: /lu_en/shared/assets/query-index.json
+        alternate: /lu_en/{path}.html
+        destination: /lu_en/shared/assets/sitemap.xml
+        hreflang: en-LU
+
+      lu_fr:
+        source: /lu_fr/shared/assets/query-index.json
+        alternate: /lu_fr/{path}.html
+        destination: /lu_fr/shared/assets/sitemap.xml
+        hreflang: fr-LU
+
+      mena_en:
+        source: /mena_en/shared/assets/query-index.json
+        alternate: /mena_en/{path}.html
+        destination: /mena_en/shared/assets/sitemap.xml
+        hreflang: en-DZ
+
+      mt:
+        source: /mt/shared/assets/query-index.json
+        alternate: /mt/{path}.html
+        destination: /mt/shared/assets/sitemap.xml
+        hreflang: en-MT
+        
+      nz:
+        source: /nz/shared/assets/query-index.json
+        alternate: /nz/{path}.html
+        destination: /nz/shared/assets/sitemap.xml
+        hreflang: en-NZ
+        
+      sa_ar:
+        source: /sa_ar/shared/assets/query-index.json
+        alternate: /sa_ar/{path}.html
+        destination: /sa_ar/shared/assets/sitemap.xml
+        hreflang: ar-SA
+
+      sa_en:
+        source: /sa_en/shared/assets/query-index.json
+        alternate: /sa_en/{path}.html
+        destination: /sa_en/shared/assets/sitemap.xml
+        hreflang: en-SA
+
+      th_en:
+        source: /th_en/shared/assets/query-index.json
+        alternate: /th_en/{path}.html
+        destination: /th_en/shared/assets/sitemap.xml
+        hreflang: en-TH
+
+      th_th:
+        source: /th_th/shared/assets/query-index.json
+        alternate: /th_th/{path}.html
+        destination: /th_th/shared/assets/sitemap.xml
+        hreflang: th-TH
+        
+      za:
+        source: /za/shared/assets/query-index.json
+        alternate: /za/{path}.html
+        destination: /za/shared/assets/sitemap.xml
+        hreflang: en-ZA
+
+      africa:
+        source: /africa/shared/assets/query-index.json
+        alternate: /africa/{path}.html
+        destination: /africa/shared/assets/sitemap.xml
+        hreflang:
+          - en-BJ
+          - en-CM
+          - en-MA
+          - en-TG
+          - en-TN
+
+      ar:
+        source: /ar/shared/assets/query-index.json
+        alternate: /ar/{path}.html
+        destination: /ar/shared/assets/sitemap.xml
+        hreflang: es-AR
+        
+      co:
+        source: /co/shared/assets/query-index.json
+        alternate: /co/{path}.html
+        destination: /co/shared/assets/sitemap.xml
+        hreflang: es-CO
+
+      cr:
+        source: /cr/shared/assets/query-index.json
+        alternate: /cr/{path}.html
+        destination: /cr/shared/assets/sitemap.xml
+        hreflang: es-CR 
+
+      ec:
+        source: /ec/shared/assets/query-index.json
+        alternate: /ec/{path}.html
+        destination: /ec/shared/assets/sitemap.xml
+        hreflang: es-EC 
+
+      eg_ar:
+        source: /eg_ar/shared/assets/query-index.json
+        alternate: /eg_ar/{path}.html
+        destination: /eg_ar/shared/assets/sitemap.xml
+        hreflang: ar-EG
+
+       eg_en:
+        source: /eg_en/shared/assets/query-index.json
+        alternate: /eg_en/{path}.html
+        destination: /eg_en/shared/assets/sitemap.xml
+        hreflang: en-EG
+
+      gr_el:
+        source: /gr_el/shared/assets/query-index.json
+        alternate: /gr_el/{path}.html
+        destination: /gr_el/shared/assets/sitemap.xml
+        hreflang: el-GR
+
+      gt:
+        source: /gt/shared/assets/query-index.json
+        alternate: /gt/{path}.html
+        destination: /gt/shared/assets/sitemap.xml
+        hreflang: es-GT
+
+      id_en:
+        source: /id_en/shared/assets/query-index.json
+        alternate: /id_en/{path}.html
+        destination: /id_en/shared/assets/sitemap.xml
+        hreflang: en-ID
+
+      id_id:
+        source: /id_id/shared/assets/query-index.json
+        alternate: /id_id/{path}.html
+        destination: /id_id/shared/assets/sitemap.xml
+        hreflang: id-ID
+
+      in_hi:
+        source: /in_hi/shared/assets/query-index.json
+        alternate: /in_hi/{path}.html
+        destination: /in_hi/shared/assets/sitemap.xml
+        hreflang: hi-IN
+
+      kw_ar:
+        source: /kw_ar/shared/assets/query-index.json
+        alternate: /kw_ar/{path}.html
+        destination: /kw_ar/shared/assets/sitemap.xml
+        hreflang: ar-KW
+        
+      kw_en:
+        source: /kw_en/shared/assets/query-index.json
+        alternate: /kw_en/{path}.html
+        destination: /kw_en/shared/assets/sitemap.xml
+        hreflang: en-KW
+
+      my_en:
+        source: /my_en/shared/assets/query-index.json
+        alternate: /my_en/{path}.html
+        destination: /my_en/shared/assets/sitemap.xml
+        hreflang: en-MY 
+
+      my_ms:
+        source: /my_ms/shared/assets/query-index.json
+        alternate: /my_ms/{path}.html
+        destination: /my_ms/shared/assets/sitemap.xml
+        hreflang: ms-MY
+        
+      ng:
+        source: /ng/shared/assets/query-index.json
+        alternate: /ng/{path}.html
+        destination: /ng/shared/assets/sitemap.xml
+        hreflang: en-NG
+
+      pe:
+        source: /pe/shared/assets/query-index.json
+        alternate: /pe/{path}.html
+        destination: /pe/shared/assets/sitemap.xml
+        hreflang: es-PE 
+
+      ph_en:
+        source: /ph_en/shared/assets/query-index.json
+        alternate: /ph_en/{path}.html
+        destination: /ph_en/shared/assets/sitemap.xml
+        hreflang: en-PH 
+
+      ph_fil:
+        source: /ph_fil/shared/assets/query-index.json
+        alternate: /ph_fil/{path}.html
+        destination: /ph_fil/shared/assets/sitemap.xml
+        hreflang: fil-PH
+
+      pr:
+        source: /pr/shared/assets/query-index.json
+        alternate: /pr/{path}.html
+        destination: /pr/shared/assets/sitemap.xml
+        hreflang: es-PR
+
+      qa_ar:
+        source: /qa_ar/shared/assets/query-index.json
+        alternate: /qa_ar/{path}.html
+        destination: /qa_ar/shared/assets/sitemap.xml
+        hreflang: ar-QA
+
+      qa_en:
+        source: /qa_en/shared/assets/query-index.json
+        alternate: /qa_en/{path}.html
+        destination: /qa_en/shared/assets/sitemap.xml
+        hreflang: en-QA
+
+      vn_en:
+        source: /vn_en/shared/assets/query-index.json
+        alternate: /vn_en/{path}.html
+        destination: /vn_en/shared/assets/sitemap.xml
+        hreflang: en-VN
+
+      vn_vi:
+        source: /vn_vi/shared/assets/query-index.json
+        alternate: /vn_vi/{path}.html
+        destination: /vn_vi/shared/assets/sitemap.xml
+        hreflang: vi-VN
+
+      dk:
+        source: /dk/shared/assets/query-index.json
+        alternate: /dk/{path}.html
+        destination: /dk/shared/assets/sitemap.xml
+        hreflang: da-DK 
+
+      fi:
+        source: /fi/shared/assets/query-index.json
+        alternate: /fi/{path}.html
+        destination: /fi/shared/assets/sitemap.xml
+        hreflang: fi-FI
+
+      no:
+        source: /no/shared/assets/query-index.json
+        alternate: /no/{path}.html
+        destination: /no/shared/assets/sitemap.xml
+        hreflang: no-NO
+
+      se:
+        source: /se/shared/assets/query-index.json
+        alternate: /se/{path}.html
+        destination: /se/shared/assets/sitemap.xml
+        hreflang: sv-SE
+
+      la:
+        source: /la/shared/assets/query-index.json
+        alternate: /la/{path}.html
+        destination: /la/shared/assets/sitemap.xml
+        hreflang:
+          - es-PA
+          - es-SV
+          - es-VE
+
+      mx:
+        source: /mx/shared/assets/query-index.json
+        alternate: /mx/{path}.html
+        destination: /mx/shared/assets/sitemap.xml
+        hreflang: es-MX
+
+      be_nl:
+        source: /be_nl/shared/assets/query-index.json
+        alternate: /be_nl/{path}.html
+        destination: /be_nl/shared/assets/sitemap.xml
+        hreflang: nl-BE
+
+      bg:
+        source: /bg/shared/assets/query-index.json
+        alternate: /bg/{path}.html
+        destination: /bg/shared/assets/sitemap.xml
+        hreflang: bg-BG
+
+      ch_it:
+        source: /ch_it/shared/assets/query-index.json
+        alternate: /ch_it/{path}.html
+        destination: /ch_it/shared/assets/sitemap.xml
+        hreflang: it-CH
+        
+      cz:
+        source: /cz/shared/assets/query-index.json
+        alternate: /cz/{path}.html
+        destination: /cz/shared/assets/sitemap.xml
+        hreflang: cs-CZ
+
+      ee:
+        source: /ee/shared/assets/query-index.json
+        alternate: /ee/{path}.html
+        destination: /ee/shared/assets/sitemap.xml
+        hreflang: et-EE 
+
+      hu:
+        source: /hu/shared/assets/query-index.json
+        alternate: /hu/{path}.html
+        destination: /hu/shared/assets/sitemap.xml
+        hreflang: hu-HU
+        
+      il_he:
+        source: /il_he/shared/assets/query-index.json
+        alternate: /il_he/{path}.html
+        destination: /il_he/shared/assets/sitemap.xml
+        hreflang: he-IL
+
+      lv:
+        source: /lv/shared/assets/query-index.json
+        alternate: /lv/{path}.html
+        destination: /lv/shared/assets/sitemap.xml
+        hreflang: lv-LV 
+
+      mena_ar:
+        source: /mena_ar/shared/assets/query-index.json
+        alternate: /mena_ar/{path}.html
+        destination: /mena_ar/shared/assets/sitemap.xml
+        hreflang:
+          - ar-IL
+          - ar-IQ
+          - ar-JO
+          - ar-LB
+          - ar-MA
+          - ar-OM
+
+      pt:
+        source: /pt/shared/assets/query-index.json
+        alternate: /pt/{path}.html
+        destination: /pt/shared/assets/sitemap.xml
+        hreflang: pt-PT
+
+      ro:
+        source: /ro/shared/assets/query-index.json
+        alternate: /ro/{path}.html
+        destination: /ro/shared/assets/sitemap.xml
+        hreflang: ro-RO
+
+      si:
+        source: /si/shared/assets/query-index.json
+        alternate: /si/{path}.html
+        destination: /si/shared/assets/sitemap.xml
+        hreflang: sl-SI
+
+      sk:
+        source: /sk/shared/assets/query-index.json
+        alternate: /sk/{path}.html
+        destination: /sk/shared/assets/sitemap.xml
+        hreflang: sk-SK
+
+      ua:
+        source: /ua/shared/assets/query-index.json
+        alternate: /ua/{path}.html
+        destination: /ua/shared/assets/sitemap.xml
+        hreflang: uk-UA
+
+      sg:
+        source: /sg/shared/assets/query-index.json
+        alternate: /sg/{path}.html
+        destination: /sg/shared/assets/sitemap.xml
+        hreflang: en-SG
+
+      br:
+        source: /br/shared/assets/query-index.json
+        alternate: /br/{path}.html
+        destination: /br/shared/assets/sitemap.xml
+        hreflang: pt-BR  
+      
+      cis_en:
+        source: /cis_en/shared/assets/query-index.json
+        alternate: /cis_en/{path}.html
+        destination: /cis_en/shared/assets/sitemap.xml
+        hreflang: en-BY
+
+      cis_ru:
+        source: /cis_ru/shared/assets/query-index.json
+        alternate: /cis_ru/{path}.html
+        destination: /cis_ru/shared/assets/sitemap.xml
+        hreflang: ru-BY
