@@ -128,7 +128,7 @@ const locales = {
 
 // Add any config options.
 const CONFIG = {
-  contentRoot: '/adobe-students-content',
+  contentRoot: '/shared',
   codeRoot: '/adobe-students',
   imsClientId: 'adobedotcom-cc',
   locales,
