@@ -2,7 +2,7 @@ version: 1
 
 sitemaps:
   website:
-    origin: https://www.adobe.com
+    origin: https://www.adobe-students.com
     lastmod: YYYY-MM-DD
     default: en-US
     languages:
