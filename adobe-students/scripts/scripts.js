@@ -128,12 +128,12 @@ const locales = {
 
 // Add any config options.
 const CONFIG = {
-  contentRoot: '/shared',
+  contentRoot: '/students-shared',
   codeRoot: '/adobe-students',
   imsClientId: 'adobedotcom-cc',
   locales,
   geoRouting: 'on',
-  prodDomains: ['www.adobe.com', 'helpx.adobe.com', 'business.adobe.com', 'adobe-students.com'],
+  prodDomains: ['www.adobe.com', 'helpx.adobe.com', 'business.adobe.com', 'www.adobe-students.com'],
   placeholders: getUrlParams(),
   stage: {
     marTechUrl:
