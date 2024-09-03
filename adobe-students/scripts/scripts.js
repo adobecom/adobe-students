@@ -10,19 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {
-  setLibs,
-  getUrlParams,
-} from './utils.js';
+import { setLibs, decorateArea } from './utils.js';
 
-import { isTokenValid } from './goCart.js';
-
-import { decorateButton } from './decorate.js';
+// Add project-wide style path here.
 const STYLES = '/adobe-students/styles/styles.css';
 
 // Use '/libs' if your live site maps '/libs' to milo's origin.
 const LIBS = '/libs';
-const noRedirect = new URLSearchParams(window.location.search).get('noRedirect');
 
 const locales = {
   // Americas
@@ -134,12 +128,16 @@ const CONFIG = {
   locales,
   geoRouting: 'on',
   prodDomains: ['www.adobe.com', 'helpx.adobe.com', 'business.adobe.com', 'www.adobe-students.com'],
-  placeholders: getUrlParams(),
+  decorateArea,
   stage: {
-    marTechUrl:
-      'https://assets.adobedtm.com/d4d114c60e50/a0e989131fd5/launch-2c94beadc94f-development.min.js',
-    edgeConfigId: 'e065836d-be57-47ef-b8d1-999e1657e8fd',
+    marTechUrl: 'https://assets.adobedtm.com/d4d114c60e50/a0e989131fd5/launch-2c94beadc94f-development.min.js',
+    edgeConfigId: '8d2805dd-85bf-4748-82eb-f99fdad117a6',
     pdfViewerClientId: '9f7f19a46bd542e2b8548411e51eb4d4',
+    pdfViewerReportSuite: 'adbadobenonacdcqa',
+    psUrl: 'https://stage.photoshop.adobe.com',
+  },
+  live: {
+    pdfViewerClientId: 'a26c77a2effb4c4aaa71e7c46385e0ed',
     pdfViewerReportSuite: 'adbadobenonacdcqa',
   },
   prod: {
@@ -147,12 +145,17 @@ const CONFIG = {
     edgeConfigId: '2cba807b-7430-41ae-9aac-db2b0da742d5',
     pdfViewerClientId: '409019ebd2d546c0be1a0b5a61fe65df',
     pdfViewerReportSuite: 'adbadobenonacdcprod',
+    psUrl: 'https://photoshop.adobe.com',
   },
   jarvis: {
     id: 'adobedotcom2',
     version: '1.83',
     onDemand: false,
   },
+  htmlExclude: [
+    /www\.adobe\.com\/(\w\w(_\w\w)?\/)?express(\/.*)?/,
+    /www\.adobe\.com\/(\w\w(_\w\w)?\/)?go(\/.*)?/,
+  ],
 };
 
 /*
@@ -162,37 +165,22 @@ const CONFIG = {
  */
 
 const miloLibs = setLibs(LIBS);
-const { loadArea, setConfig, loadLana } = await import(
-  `${miloLibs}/utils/utils.js`
-);
-
+const { loadArea, setConfig, loadLana } = await import(`${miloLibs}/utils/utils.js`);
 setConfig({ ...CONFIG, miloLibs });
-
-async function loadAdobeStudentsPage() {
-  loadLana({ clientId: 'adobe-students' });
-  await loadArea();
-  decorateButton();
-}
+decorateArea();
 
 (function loadStyles() {
   const paths = [`${miloLibs}/styles/styles.css`];
-  if (STYLES) {
-    paths.push(STYLES);
-  }
+  if (STYLES) paths.push(STYLES);
   paths.forEach((path) => {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', path);
     document.head.appendChild(link);
   });
-})();
+}());
 
 (async function loadPage() {
-  const validate = document.head.querySelector(`meta[name="validate"]`);
-  if (validate?.content === 'on') {
-    if (await isTokenValid(miloLibs) || noRedirect) return loadAdobeStudentsPage();
-    const defaultPage = document.head.querySelector(`meta[name="default-page"]`);
-    window.location.href = defaultPage?.content || 'https://www.adobe-students.com/';
-  }
-  loadAdobeStudentsPage();
-})();
+  loadLana({ clientId: 'adobe-students' });
+  await loadArea();
+}());

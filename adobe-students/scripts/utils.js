@@ -17,11 +17,6 @@
  */
 
 /**
- * adobe-students pages param keys
- */
-export const GOCART_PARAM_KEYS = ['gid', 'gtoken', 'sdid', 'cohortid', 'timer', 'gcsrc', 'gcprog', 'gcprogcat', 'gcpagetype', 'language', 'productname', 'daysremaining'];
-
-/**
  * The decision engine for where to get Milo's libs from.
  */
 export const [setLibs, getLibs] = (() => {
@@ -34,68 +29,82 @@ export const [setLibs, getLibs] = (() => {
       }
       const { hostname } = window.location;
       if (
-        !hostname.includes('hlx.page') &&
-        !hostname.includes('hlx.live') &&
-        !hostname.includes('localhost')
-      ) {
+        !hostname.includes('hlx.page')
+        && !hostname.includes('hlx.live')
+        && !hostname.includes('localhost')) {
         libs = prodLibs;
         return libs;
       }
-      const branch =
-        new URLSearchParams(window.location.search).get('milolibs') || 'main';
-      if (branch === 'local') {
-        libs = 'http://localhost:6456/libs';
-        return libs;
-      }
-      if (branch.indexOf('--') > -1) {
-        libs = `https://${branch}.hlx.live/libs`;
-        return libs;
-      }
+      const branch = new URLSearchParams(window.location.search).get('milolibs') || 'main';
+      if (branch === 'local') { libs = 'http://localhost:6456/libs'; return libs; }
+      if (branch.indexOf('--') > -1) { libs = `https://${branch}.hlx.live/libs`; return libs; }
       libs = `https://${branch}--milo--adobecom.hlx.live/libs`;
       return libs;
-    },
-    () => libs,
+    }, () => libs,
   ];
 })();
 
 const miloLibs = setLibs('/libs');
 
-const { createTag, localizeLink } = await import(`${miloLibs}/utils/utils.js`);
-export { createTag, localizeLink };
+const { createTag, localizeLink, getConfig, loadStyle, createIntersectionObserver } = await import(`${miloLibs}/utils/utils.js`);
+export { createTag, loadStyle, localizeLink, createIntersectionObserver, getConfig };
 
-function getCountdown(timer) {
-  const timerDate = new Date(timer);
+function getDecorateAreaFn() {
+  let lcpImgSet = false;
 
-  if (isNaN(timerDate.getTime())) {
-    return 0;
+  // Load LCP image immediately
+  const eagerLoad = (lcpImg) => {
+    lcpImg?.setAttribute('loading', 'eager');
+    lcpImg?.setAttribute('fetchpriority', 'high');
+    if (lcpImg) lcpImgSet = true;
+  };
+
+  function replaceDotMedia(area = document) {
+    const currUrl = new URL(window.location);
+    const pathSeg = currUrl.pathname.split('/').length;
+    if (pathSeg >= 3) return;
+    const resetAttributeBase = (tag, attr) => {
+      area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
+        el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
+      });
+    };
+    resetAttributeBase('img', 'src');
+    resetAttributeBase('source', 'srcset');
   }
 
-  if (timer.endsWith('d')) {
-    const countdown = parseInt(timer, 10);
-    return isNaN(countdown) ? 0 : countdown;
-  } else {
-    const now = new Date();
-    const daysRemaining = Math.round((timerDate - now) / (24 * 3600 * 1000));
-    return Math.max(daysRemaining, 0); 
-  }
-}
-
-function getParamValue(val) {
-  let paramValue = (new URLSearchParams(window.location.search)).get(val);
-  if (val === 'timer' && paramValue ) {
-    paramValue = getCountdown(paramValue);
-  }
-  return paramValue;
-}
-
-export function getUrlParams() {
-  const params = {};
-  for (const key of GOCART_PARAM_KEYS) {
-    const paramValue = getParamValue(key);
-    if (paramValue) {
-      params[key] = paramValue;
+  async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
+    const firstBlock = area.querySelector('body > main > div > div');
+    let fgDivs = null;
+    switch (true) {
+      case firstBlock?.classList.contains('changebg'): {
+        firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
+        import(`${getConfig().codeRoot}/deps/interactive-marquee-changebg/changeBgMarquee.js`);
+        break;
+      }
+      case firstBlock?.classList.contains('marquee'):
+        firstBlock.querySelectorAll('img').forEach(eagerLoad);
+        break;
+      case firstBlock?.classList.contains('interactive-marquee'):
+        firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
+        fgDivs = firstBlock.querySelector(':scope > div:nth-child(2)').querySelectorAll('div:not(:first-child)');
+        fgDivs.forEach((d) => eagerLoad(d.querySelector('img')));
+        if (!firstBlock.classList.contains('changebg')) loadStyle('/adobe-students/blocks/interactive-marquee/milo-marquee.css');
+        break;
+      case !!fragmentLink:
+        if (window.document.querySelector('a.fragment') === fragmentLink && !window.document.querySelector('img[loading="eager"]')) {
+          eagerLoad(area.querySelector('img'));
+        }
+        break;
+      default:
+        if (!fragmentLink) eagerLoad(area.querySelector('img'));
+        break;
     }
   }
-  return params;
+
+  return (area, options) => {
+    replaceDotMedia();
+    if (!lcpImgSet) loadLCPImage(area, options);
+  };
 }
 
+export const decorateArea = getDecorateAreaFn();

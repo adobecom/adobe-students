@@ -1,25 +1,12 @@
-import { getUrlParams } from './utils.js';
-
-function goCartLinkAppend(link, paramsValue) {
-  try {
-    const url = new URL(link.getAttribute('href'));
-    const urlSearchParams = new URLSearchParams(url.search);
-
-    Object.keys(paramsValue).forEach((key) => {
-      if (!urlSearchParams.has(key)) {
-        urlSearchParams.append(key, paramsValue[key]);
-      }
-    });
-
-    const searchParamsString = urlSearchParams.toString();
-    link.setAttribute('href', `${url.origin}${url.pathname}?${searchParamsString}${url.hash}`);
-  } catch (error) {
-    console.log(`goCartLinkAppend: Could not append link for ${link}, invalid URL`);
+export default function defineDeviceByScreenSize() {
+  const DESKTOP_SIZE = 1200;
+  const MOBILE_SIZE = 600;
+  const screenWidth = window.innerWidth;
+  if (screenWidth >= DESKTOP_SIZE) {
+    return 'DESKTOP';
   }
-}
-
-export function decorateButton() {
-  const buttons = document.querySelectorAll('a.con-button');
-  const paramsValue = getUrlParams();
-  buttons.forEach((button) => goCartLinkAppend(button, paramsValue));
+  if (screenWidth <= MOBILE_SIZE) {
+    return 'MOBILE';
+  }
+  return 'TABLET';
 }

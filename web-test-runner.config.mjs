@@ -33,8 +33,8 @@ const swcImportMaps = Object.fromEntries([
 
 export default {
   coverageConfig: {
-    include: ['adobe-students/scripts/scripts.js'],
-    exclude: ['test/mocks/**', 'test/**', '**/node_modules/**'],
+    include: ['adobe-students/**'],
+    exclude: ['test/mocks/**', 'test/**', '**/node_modules/**', 'adobe-students/deps/**'],
   },
   debug: false,
   files: ['test/**/*.test.(js|html)'],
@@ -43,5 +43,4 @@ export default {
   plugins: [importMapsPlugin({ inject: { importMap: { imports: { ...swcImportMaps } } } })],
   port: 2000,
   browserLogs: false,
-  global: { window: { location: { search: '?param1=value1&param2=value2' } } },
 };
