@@ -1,7 +1,7 @@
 version: 1.0
 
 snow:
-  - id: 546348 # Milo Genuine https://adobe.service-now.com/service_registry_portal.do#/service/546348
+  - id: 545562 # Milo CC
 
 notifications:
   jira:
@@ -12,12 +12,17 @@ notifications:
           risk_rating: R5
       fields:
         assignee:
-          name: blaishram
+          name: sumanh
         customfield_11800: MWPW-140779 #epic link
+        customfield_12900: 
+          value: Brahmos
         watchers:
           - casalino
           - jmichnow
           - mauchley
+          - saljain
+          - mathuria
+          - dstrong
         labels:
           - "OriginatingProcess=Kodiak"
           - "security"

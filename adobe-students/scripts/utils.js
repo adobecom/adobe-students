@@ -44,67 +44,22 @@ export const [setLibs, getLibs] = (() => {
   ];
 })();
 
-const miloLibs = setLibs('/libs');
-
-const { createTag, localizeLink, getConfig, loadStyle, createIntersectionObserver } = await import(`${miloLibs}/utils/utils.js`);
-export { createTag, loadStyle, localizeLink, createIntersectionObserver, getConfig };
-
-function getDecorateAreaFn() {
-  let lcpImgSet = false;
-
-  // Load LCP image immediately
-  const eagerLoad = (lcpImg) => {
-    lcpImg?.setAttribute('loading', 'eager');
-    lcpImg?.setAttribute('fetchpriority', 'high');
-    if (lcpImg) lcpImgSet = true;
+export function decorateArea(area = document) {
+  const eagerLoad = (parent, selector) => {
+    const img = parent.querySelector(selector);
+    img?.removeAttribute('loading');
   };
 
-  function replaceDotMedia(area = document) {
-    const currUrl = new URL(window.location);
-    const pathSeg = currUrl.pathname.split('/').length;
-    if (pathSeg >= 3) return;
-    const resetAttributeBase = (tag, attr) => {
-      area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
-        el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
-      });
-    };
-    resetAttributeBase('img', 'src');
-    resetAttributeBase('source', 'srcset');
-  }
-
-  async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
-    const firstBlock = area.querySelector('body > main > div > div');
-    let fgDivs = null;
-    switch (true) {
-      case firstBlock?.classList.contains('changebg'): {
-        firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
-        import(`${getConfig().codeRoot}/deps/interactive-marquee-changebg/changeBgMarquee.js`);
-        break;
-      }
-      case firstBlock?.classList.contains('marquee'):
-        firstBlock.querySelectorAll('img').forEach(eagerLoad);
-        break;
-      case firstBlock?.classList.contains('interactive-marquee'):
-        firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
-        fgDivs = firstBlock.querySelector(':scope > div:nth-child(2)').querySelectorAll('div:not(:first-child)');
-        fgDivs.forEach((d) => eagerLoad(d.querySelector('img')));
-        if (!firstBlock.classList.contains('changebg')) loadStyle('/adobe-students/blocks/interactive-marquee/milo-marquee.css');
-        break;
-      case !!fragmentLink:
-        if (window.document.querySelector('a.fragment') === fragmentLink && !window.document.querySelector('img[loading="eager"]')) {
-          eagerLoad(area.querySelector('img'));
-        }
-        break;
-      default:
-        if (!fragmentLink) eagerLoad(area.querySelector('img'));
-        break;
+  (async function loadLCPImage() {
+    const marquee = area.querySelector('.marquee');
+    if (!marquee) {
+      eagerLoad(area, 'img');
+      return;
     }
-  }
 
-  return (area, options) => {
-    replaceDotMedia();
-    if (!lcpImgSet) loadLCPImage(area, options);
-  };
+    // First image of first row
+    eagerLoad(marquee, 'div:first-child img');
+    // Last image of last column of last row
+    eagerLoad(marquee, 'div:last-child > div:last-child img');
+  }());
 }
-
-export const decorateArea = getDecorateAreaFn();
