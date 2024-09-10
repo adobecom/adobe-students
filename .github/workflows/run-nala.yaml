@@ -16,7 +16,7 @@ jobs:
       - name: Run Nala
         uses: adobecom/nala@main
         env:
-          WORKFLOW_NAME: 'CC-PR-RUN'
+          WORKFLOW_NAME: 'STUDENTS-PR-RUN'
           PR_RUN: 'true'
           labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
           branch: ${{ github.event.pull_request.head.ref }}
