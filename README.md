@@ -47,3 +47,15 @@ If you need to lint just one file, you can run:
 ```sh
 npx eslint file1.js
 ```
+
+## Documentations that might help
+  Development Process on Adobe Students Milo [wiki](https://github.com/adobecom/adobe-students/wiki)
+
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for ways to get started.
+
+Please adhere to this project's `code of conduct`.
+
+## GitHub Discussions
+  Join the conversation in our [GitHub Discussions](https://github.com/orgs/adobecom/discussions).
