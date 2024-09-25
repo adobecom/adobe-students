@@ -51,11 +51,10 @@ npx eslint file1.js
 ## Documentations that might help
   Development Process on Adobe Students Milo [wiki](https://github.com/adobecom/adobe-students/wiki)
 
+## GitHub Discussions
+  Join the conversation on [GitHub Discussions](https://github.com/orgs/adobecom/discussions).
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for ways to get started.
 
 Please adhere to this project's `code of conduct`.
-
-## GitHub Discussions
-  Join the conversation in our [GitHub Discussions](https://github.com/orgs/adobecom/discussions).
