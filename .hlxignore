@@ -1,7 +1,9 @@
+*.json
+!*/**/*.json
 .*
 *.md
-karma.config.js
 LICENSE
-package.json
-package-lock.json
 test/*
+web-test-runner.config.mjs
+codecov.yaml
+!tools/sidekick/config.json

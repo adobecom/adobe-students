@@ -1,7 +1,7 @@
-Please always provide the [GitHub issue(s)](../issues) your PR is for, as well as test URLs where your change can be observed (before and after):
+* Add your specific features or fixes
 
-Fix #<gh-issue-id>
+Resolves: [MWPW-NUMBER](https://jira.corp.adobe.com/browse/MWPW-NUMBER)
 
-Test URLs:
-- Before: https://main--adobe-students--adobecom.hlx.live/
-- After: https://<branch>--adobe-students--adobecom.hlx.live/
+**Test URLs:**
+- Before: https://main--adobe-students--adobecom.hlx.live/?martech=off
+- After: https://feat-branch--adobe-students--adobecom.hlx.live/?martech=off

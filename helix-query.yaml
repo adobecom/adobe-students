@@ -3,10 +3,14 @@ version: 1
 indices:
   students:
     include:
-      - /documents/**
+      - /creativecloud/**
     exclude:
-      - /documents/snippets/**
-    target: /query-index.json
+      - '**/students-shared/**'
+      - '**/gnav**'
+      - '**/footer**'
+      - '**/drafts/**'
+      - '**/fragments/**'
+    target: /students-shared/assets/query-index.xlsx
     properties:
       author:
         select: main > div:nth-of-type(3) > p:nth-of-type(1)
